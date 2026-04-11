@@ -22,7 +22,7 @@ Frame.Draggable = true
 
 -- TITLE
 local Title = Instance.new("TextLabel", Frame)
-Title.Text = "Zenthra Freeze Trade"
+Title.Text = "Freeze Trade"
 Title.Size = UDim2.new(1, 0, 0, 50)
 Title.BackgroundTransparency = 1
 Title.TextColor3 = Color3.fromRGB(0,255,180)

